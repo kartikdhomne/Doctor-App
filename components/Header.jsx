@@ -11,14 +11,14 @@ import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { checkUser } from "@/lib/checkUser";
 import { Badge } from "./ui/badge";
-// import { checkAndAllocateCredits } from "@/actions/credits";
+import { checkAndAllocateCredits } from "@/actions/credits";
 import Image from "next/image";
 
 export default async function Header() {
   const user = await checkUser();
-  // if (user?.role === "PATIENT") {
-  //   await checkAndAllocateCredits(user);
-  // }
+  if (user?.role === "PATIENT") {
+    await checkAndAllocateCredits(user);
+  }
 
   return (
     <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-10 supports-[backdrop-filter]:bg-background/60">
@@ -73,7 +73,7 @@ export default async function Header() {
               <Link href="/appointments">
                 <Button
                   variant="outline"
-                  className="hidden md:inline-flex items-center gap-2"
+                  className="hidden md:inline-flex items-center gap-2 cursor-pointer"
                 >
                   <Calendar className="h-4 w-4" />
                   My Appointments
