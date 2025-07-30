@@ -3,7 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark, neobrutalism, shadesOfPurple } from '@clerk/themes'
+import { dark, neobrutalism, shadesOfPurple } from "@clerk/themes";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +18,10 @@ export default function RootLayout({ children }) {
     <ClerkProvider
       appearance={{
         baseTheme: [shadesOfPurple],
-        variables: { colorPrimary: 'white' },
+        variables: { colorPrimary: "white" },
         signIn: {
           baseTheme: [shadesOfPurple],
-          variables: { colorPrimary: 'green' },
+          variables: { colorPrimary: "green" },
         },
       }}
     >
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
 
             <main className="min-h-screen">{children}</main>
 
+            <Toaster richColors />
             {/* footer */}
             <footer className="bg-muted/50 py-12">
               <div className="container mx-auto text-center text-blue-600 text-bolder">
