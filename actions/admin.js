@@ -257,6 +257,7 @@ export async function approvePayout(formData) {
         revalidatePath("/admin");
         return { success: true };
     } catch (error) {
+        
         console.error("Failed to approve payout:", error);
         throw new Error(`Failed to approve payout: ${error.message}`);
     }
